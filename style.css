@@ -1,3 +1,8 @@
+/* the usual */
+* {
+  box-sizing: border-box;
+}
+
 /* remove the default margin on the body */
 body {
   margin: 0;

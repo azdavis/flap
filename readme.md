@@ -1,3 +1,3 @@
 # flap
 
-a clone of 'flappy bird'
+a clone of flappy bird

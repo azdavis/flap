@@ -1,3 +1,6 @@
+// turn off some weird behavior
+"use strict";
+
 // canvas setup
 // ============
 
@@ -6,19 +9,16 @@ const canvas = document.createElement("canvas");
 // get its two-dimensional rendering context.
 const cx = canvas.getContext("2d");
 
-// note that the x increases to the right, and y increases down.
+// note that the x (horizontal) increases to the right, and y (vertical)
+// increases down.
 //
-// (0, 0)
-// v            - x +
-// +-------------------------------+ < (innerWidth, 0)
-// |                               |
-// |                               | -
-// |                               | y
-// |                               | +
-// |                               |
-// |                               |
-// +-------------------------------+ < (innerWidth, innerHeight)
-// ^ (0, innerHeight)
+//           (0, 0) -> +-------------------------+ <- (innerWidth, 0)
+//                     |                         |
+//                     |                         |
+//                     |                         |
+//                     |                         |
+//                     |                         |
+// (0, innerHeight) -> +-------------------------+ <- (innerWidth, innerHeight)
 
 // resizes the canvas to be the size of the entire window. there's a bit of
 // weird stuff with devicePixelRatio to make sure high pixel density screens
@@ -172,15 +172,14 @@ function tick() {
 // enable jumping
 // ==============
 
-// jump when we hit the space bar
+// jump when we hit the space bar.
 addEventListener("keydown", (ev) => {
-  const key = ev.key;
-  if (key === " ") {
+  if (ev.key === " ") {
     playerVel = jumpVel;
   }
 });
 
-// jump when we click anywhere on the screen
+// jump when we click anywhere on the screen.
 addEventListener("click", () => {
   playerVel = jumpVel;
 });
