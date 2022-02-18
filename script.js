@@ -169,11 +169,6 @@ function tick() {
   requestAnimationFrame(tick);
 }
 
-// start the app
-// =============
-
-tick();
-
 // enable jumping
 // ==============
 
@@ -189,3 +184,8 @@ addEventListener("keydown", (ev) => {
 addEventListener("click", () => {
   playerVel = jumpVel;
 });
+
+// start the app
+// =============
+
+tick();
