@@ -20,11 +20,6 @@ const jumpVel = -8;
 const wallVel = 2;
 const wallTicks = 200;
 
-let yPos = 10 * dim;
-let yVel = 0;
-let walls = [];
-let ticks = wallTicks;
-
 function shouldKeepWall(w) {
   return w.xPos > -dim;
 }
@@ -48,6 +43,11 @@ function drawWall(xPos, yPos, wallX, wallY, wallH) {
   cx.fillRect(wallX, wallY, dim, wallH);
   cx.fillStyle = oldFill;
 }
+
+let yPos = 10 * dim;
+let yVel = 0;
+let walls = [];
+let ticks = wallTicks;
 
 function tick() {
   cx.clearRect(0, 0, innerWidth, innerHeight);
