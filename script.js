@@ -21,7 +21,7 @@ const wallVel = 2;
 const wallTicks = 200;
 
 function shouldKeepWall(w) {
-  return w.xPos > -dim;
+  return w.x > -dim;
 }
 
 function intersect1d(aS, aE, bS, bE) {
@@ -35,24 +35,24 @@ function intersect2d(ax, ay, aw, ah, bx, by, bw, bh) {
   );
 }
 
-function drawWall(xPos, yPos, wallX, wallY, wallH) {
+function drawWall(playerX, playerY, wallX, wallY, wallH) {
   const oldFill = cx.fillStyle;
-  if (intersect2d(xPos, yPos, dim, dim, wallX, wallY, dim, wallH)) {
+  if (intersect2d(playerX, playerY, dim, dim, wallX, wallY, dim, wallH)) {
     cx.fillStyle = "red";
   }
   cx.fillRect(wallX, wallY, dim, wallH);
   cx.fillStyle = oldFill;
 }
 
-let yPos = 10 * dim;
-let yVel = 0;
+let playerY = 10 * dim;
+let playerVel = 0;
 let walls = [];
 let ticks = wallTicks;
 
 function tick() {
   cx.clearRect(0, 0, innerWidth, innerHeight);
   if (ticks === wallTicks) {
-    walls.push({ r: Math.random(), xPos: innerWidth });
+    walls.push({ r: Math.random(), x: innerWidth });
     ticks = 0;
   } else {
     ticks++;
@@ -60,26 +60,26 @@ function tick() {
   if (!walls.every(shouldKeepWall)) {
     walls = walls.filter(shouldKeepWall);
   }
-  const xPos = Math.floor(0.2 * innerWidth);
-  const maxHeight = innerHeight - dim;
-  yPos += yVel;
-  if (yPos <= 0) {
-    yPos = 0;
-    yVel = 0;
-  } else if (yPos > maxHeight) {
-    yPos = maxHeight;
-    yVel = 0;
+  const playerX = Math.floor(0.2 * innerWidth);
+  const maxY = innerHeight - dim;
+  playerY += playerVel;
+  if (playerY <= 0) {
+    playerY = 0;
+    playerVel = 0;
+  } else if (playerY > maxY) {
+    playerY = maxY;
+    playerVel = 0;
   }
-  yVel += gravityAccel;
+  playerVel += gravityAccel;
   for (let i = 0; i < walls.length; i++) {
-    walls[i].xPos -= wallVel;
-    const wallX = walls[i].xPos;
+    walls[i].x -= wallVel;
+    const wallX = walls[i].x;
     const topH = Math.floor((innerHeight - wallGap) * walls[i].r);
     const botY = topH + wallGap;
-    drawWall(xPos, yPos, wallX, 0, topH);
-    drawWall(xPos, yPos, wallX, botY, innerHeight - botY);
+    drawWall(playerX, playerY, wallX, 0, topH);
+    drawWall(playerX, playerY, wallX, botY, innerHeight - botY);
   }
-  cx.fillRect(xPos, yPos, dim, dim);
+  cx.fillRect(playerX, playerY, dim, dim);
   requestAnimationFrame(tick);
 }
 
@@ -88,10 +88,10 @@ tick();
 addEventListener("keydown", (ev) => {
   const key = ev.key;
   if (key === " ") {
-    yVel = jumpVel;
+    playerVel = jumpVel;
   }
 });
 
 addEventListener("click", () => {
-  yVel = jumpVel;
+  playerVel = jumpVel;
 });
