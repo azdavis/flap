@@ -44,15 +44,15 @@ document.body.appendChild(canvas);
 // the width and height of the player, and the width of walls.
 const dim = 50;
 // how much space between the upper and lower parts of a single wall.
-const wallGap = 6 * dim;
+const wallGap = 5 * dim;
 // how fast the player returns to the ground.
 const gravityAccel = 0.5;
 // how fast the player moves when jumping.
 const jumpVel = -8;
 // how fast walls advance towards the player.
-const wallVel = 2;
+const wallVel = 3;
 // how many ticks between walls appearing.
-const wallTicks = 200;
+const wallTicks = 150;
 
 // helper functions
 // ================
