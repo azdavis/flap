@@ -1,4 +1,3 @@
-// turn off some weird behavior
 "use strict";
 
 // canvas setup
