@@ -176,7 +176,7 @@ addEventListener("keydown", (ev) => {
 });
 
 // jump when we click anywhere on the screen.
-addEventListener("click", () => {
+addEventListener("touchstart", () => {
   playerVel = jumpVel;
 });
 
