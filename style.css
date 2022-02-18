@@ -4,8 +4,15 @@
 
 body {
   margin: 0;
+  font-family: Verdana, sans-serif;
 }
 
 canvas {
   display: block;
+}
+
+#info {
+  position: fixed;
+  top: 0.5em;
+  left: 0.5em;
 }
