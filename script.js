@@ -84,15 +84,11 @@ function intersect2d(ax, ay, aw, ah, bx, by, bw, bh) {
 // wallY) and has height wallH. (the player as always has width and height equal
 // to dim and the wall has width equal to dim).
 function drawWall(playerX, playerY, wallX, wallY, wallH) {
-  const oldFill = cx.fillStyle;
   // draw the wall as red if the player intersects with it.
-  if (intersect2d(playerX, playerY, dim, dim, wallX, wallY, dim, wallH)) {
-    cx.fillStyle = "red";
-  }
+  const hit = intersect2d(playerX, playerY, dim, dim, wallX, wallY, dim, wallH);
+  cx.fillStyle = hit ? "#a55" : "#55a";
   // actually draw the wall. (will be in red if we intersected, per above)
   cx.fillRect(wallX, wallY, dim, wallH);
-  // restore the old fill style.
-  cx.fillStyle = oldFill;
 }
 
 // mutable state
@@ -164,6 +160,7 @@ function tick() {
     drawWall(playerX, playerY, wallX, botY, innerHeight - botY);
   }
   // draw the player.
+  cx.fillStyle = "#5a5";
   cx.fillRect(playerX, playerY, dim, dim);
   // call this function again at the browser's next convenience.
   requestAnimationFrame(tick);
