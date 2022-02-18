@@ -1,7 +1,9 @@
+/* remove the default margin on the body */
 body {
   margin: 0;
 }
 
+/* the canvas will take up the whole screen, so let's display it as a block */
 canvas {
   display: block;
 }
